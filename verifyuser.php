@@ -9,7 +9,7 @@
         /// no, forward loginpage
         
         $var1=$_POST['uname'];
-        $var2=$_POST['upass']; //md5($_POST['upass']);
+        $var2=md5($_POST['upass']);  //$_POST['upass'];
         
         try{
             ///php-mysql 3 way. We will use PDO - PHP data object

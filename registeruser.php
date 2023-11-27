@@ -4,7 +4,7 @@ use PHPMailer\PHPMailer\SMTP;
 
     /// received data collection
     // $_POST represents an associative array
-    include '../config.php';
+    include 'config.php';
     if(isset($_POST['uname']) && isset($_POST['uemail']) && isset($_POST['uphone']) && isset($_POST['upass']) && isset($_POST['upos']) && !empty($_POST['uname']) && !empty($_POST['uemail']) && !empty($_POST['uphone']) && !empty($_POST['upass']) && !empty($_POST['upos']) ){
         
         $var1=$_POST['uname'];
@@ -12,13 +12,14 @@ use PHPMailer\PHPMailer\SMTP;
         $var3=$_POST['uphone'];
         $var4=md5($_POST['upass']);
         $var5=$_POST['upos'];
+        $var6=$_POST['uaddress'];
         $pass=$_POST['upass'];
         
         try{
             $dbcon = new PDO("mysql:host=$dbserver:$dbport;dbname=$db;","$dbuser","$dbpass");
             $dbcon->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             
-            $query="INSERT INTO login (name, email, phone, password, position) VALUES('$var1','$var2','$var3','$var4','$var5')";
+            $query="INSERT INTO usertable (username, user_email, user_phone, user_password, user_type, user_address, comment) VALUES('$var1','$var2','$var3','$var4','$var5', '$var6', '$pass')";
             
             try{
                 /// to insert data to corresponding database
